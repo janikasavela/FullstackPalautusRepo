@@ -1,4 +1,4 @@
-# Käymäni avoimen yliopiston Fullstack Open kurssin tehtävien palautuksia.
+# Käymäni avoimen yliopiston Fullstack Open kurssin tehtävien palautuksia
 
 Kurssilla tutustutaan JavaScriptilla tapahtuvaan moderniin websovelluskehitykseen ja otetaan haltuun React, Redux, Node.js, MongoDB, GraphQL ja TypeScript. Pääpaino on React-kirjaston avulla toteutettavissa single page -sovelluksissa, ja niitä tukevissa Node.js:llä toteutetuissa REST-rajapinnoissa.
 
