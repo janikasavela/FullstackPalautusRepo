@@ -1,6 +1,6 @@
 # React + Vite
 
-Osoitteesta https://studies.cs.helsinki.fi/restcountries/ löytyy palvelu, joka tarjoaa paljon eri maihin liittyvää tietoa. Tein sovelluksen, jonka avulla voit tarkastella eri maiden tietoja.
+Osoitteesta https://studies.cs.helsinki.fi/restcountries/ löytyy palvelu, joka tarjoaa paljon eri maihin liittyvää tietoa. Tein sovelluksen, jonka avulla voi tarkastella eri maiden tietoja.
 
 Sovelluksen käyttöliittymä on yksinkertainen.
 Näytettävä maa haetaan kirjoittamalla hakuehto hakukenttään.
