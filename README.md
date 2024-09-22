@@ -6,5 +6,5 @@ Pienet esittelytekstit ja kuvat lisätty näihin kurssin aikana tehtyihin ohjelm
 
 OSA 2:
 
-- 2.6-2.15 (Phonebook)
+- 2.6-2.15 (Phonebook) (Julkaistu Fly.io:n kautta osoitteessa https://express-wispy-wind-7618.fly.dev/)
 - 2.16-2.20 (Eri maiden tietojen hakua ja niiden säätiedot kahden eri REST API:n avulla)

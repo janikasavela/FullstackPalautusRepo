@@ -1,6 +1,6 @@
 # React + Vite
 
-Puhelinluettelo ohjelma.
+Puhelinluettelo ohjelma, julkaistu Fly.io:n kautta: https://express-wispy-wind-7618.fly.dev/
 
 Yhteystiedot säilötään palvelimelle ja niiden muutokset synkronoidaan myös palvelimelle. Yhteystietoja voi lisätä, muokata sekä poistaa.
 
