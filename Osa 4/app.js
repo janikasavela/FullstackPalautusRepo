@@ -1,3 +1,4 @@
+require("express-async-errors");
 const express = require("express");
 const app = express();
 const cors = require("cors");
@@ -6,6 +7,9 @@ const { MONGODB_URI } = require("./utils/config");
 const morgan = require("morgan");
 const logger = require("./utils/logger");
 const blogsRouter = require("./routers/blog");
+const usersRouter = require("./routers/user");
+const loginRouter = require("./routers/login");
+const { tokenExtractor, userExtractor } = require("./middleware/auth");
 
 mongoose.connect(MONGODB_URI).then(() => {
   logger.info("Connected to MongoDB..");
@@ -33,12 +37,24 @@ const errorHandler = (error, request, response, next) => {
     return response.status(400).send({ error: "malformatted id" });
   } else if (error.name === "ValidationError") {
     return response.status(400).send({ error: error.message });
+  } else if (
+    error.name === "MongoServerError" &&
+    error.message.includes("E11000 duplicate key error")
+  ) {
+    return response
+      .status(400)
+      .json({ error: "expected `username` to be unique" });
+  } else if (error.name === "JsonWebTokenError") {
+    return response.status(400).json({ error: "token missing or invalid" });
   }
 
-  next(error);
+  response.status(500).send("Something failed.");
 };
 
-app.use('/api/blogs', blogsRouter);
+app.use(tokenExtractor);
+app.use("/api/blogs", blogsRouter);
+app.use("/api/users", usersRouter);
+app.use("/api/login", loginRouter);
 
 app.use(unknownEndpoint);
 app.use(errorHandler);

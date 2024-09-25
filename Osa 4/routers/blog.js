@@ -1,34 +1,91 @@
 const express = require("express");
 const router = express.Router();
 const { Blog } = require("../models/blog");
+const { User } = require("../models/user");
+const jwt = require("jsonwebtoken");
+const { userExtractor } = require("../middleware/auth");
 
-router.get("/", async (req, res, next) => {
-  Blog.find()
-    .sort("name")
-    .then((blogs) => res.send(blogs))
-    .catch((err) => next(err));
+router.get("/", async (req, res) => {
+  const blogs = await Blog.find().populate("user");
+  res.send(blogs);
 });
 
-router.post("/", async (req, res, next) => {
-  const { title, author, url, likes } = req.body;
-  if (!title || !author || !url || !likes)
+router.post("/", async (req, res) => {
+  const { title, author, url, likes, userId } = req.body;
+  const decodedToken = jwt.verify(req.token, process.env.SECRET);
+  if (!decodedToken.id) {
+    return response.status(401).json({ error: "token invalid" });
+  }
+  const user = await User.findById(decodedToken.id);
+
+  // let userId2 = userId;
+
+  if (!title || !author || !url)
     return res
       .status(400)
-      .send("Title, author, url and likes are all required information");
+      .send("Title, author and url are all required information");
+
+  /*  if (!userId) {
+    const users = await User.find();
+    userId2 = users[0]._id;
+  }
+
+  const user = await User.findById(userId2);
+ */
 
   const blog = new Blog({
     title,
     author,
     url,
-    likes,
+    likes: likes ? likes : 0,
+    user: user._id,
   });
 
-  await blog
-    .save()
-    .then((result) => {
-      res.status(201).send(result);
-    })
-    .catch((err) => next(err));
+  const savedBlog = await blog.save();
+  user.blogs = user.blogs.concat(savedBlog.id);
+  await user.save();
+  res.status(201).send(blog);
+});
+
+router.delete("/:id", userExtractor, async (req, res) => {
+  const decodedToken = jwt.verify(req.token, process.env.SECRET);
+  if (!decodedToken.id) {
+    return res.status(401).json({ error: "token invalid" });
+  }
+  // const user = await User.findById(decodedToken.id);
+  const user = req.user;
+
+  let blog = await Blog.findById(req.params.id);
+  if (!blog) {
+    return res.status(404).send("The blog with the given ID was not found");
+  }
+
+  if (blog.user.toString() !== user._id.toString()) {
+    return res
+      .status(403)
+      .json({ error: "only the creator can delete this blog" });
+  }
+
+  await Blog.findByIdAndDelete(req.params.id);
+
+  res.send(blog);
+});
+
+router.put("/:id", async (req, res) => {
+  if (!req.body.likes)
+    return res.status(400).send("Likes field is required for updating");
+
+  const blog = await Blog.findByIdAndUpdate(
+    req.params.id,
+    {
+      likes: req.body.likes,
+    },
+    { new: true, runValidators: true, context: "query" }
+  );
+
+  if (!blog) res.status(404).send("The blog with the given ID was not found");
+
+  res.send(blog);
 });
 
 module.exports = router;
