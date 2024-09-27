@@ -1,12 +1,11 @@
+import BlogDetails from './BlogDetails'
+
 const Show = ({ blogs }) => {
   return (
     <>
+      <h2>Blogs</h2>
       {blogs.map((blog) => (
-        <div key={blog.id}>
-          <span>
-            {blog.title} {blog.author}{' '}
-          </span>
-        </div>
+        <BlogDetails key={blog.id} blog={blog} />
       ))}
     </>
   )
