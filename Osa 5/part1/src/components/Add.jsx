@@ -1,7 +1,13 @@
 import noteService from '../services/blogs'
 import { useState } from 'react'
 
-const Add = ({ setMessage, setMessageClass, setBlogs, setAddVisible }) => {
+const Add = ({
+  setMessage,
+  setMessageClass,
+  setBlogs,
+  setAddVisible,
+  user,
+}) => {
   const [newTitle, setNewTitle] = useState('')
   const [newAuthor, setNewAuthor] = useState('')
   const [newUrl, setNewUrl] = useState('')
@@ -9,37 +15,13 @@ const Add = ({ setMessage, setMessageClass, setBlogs, setAddVisible }) => {
   const addBlog = (e) => {
     e.preventDefault()
     const newBlog = { title: newTitle, author: newAuthor, url: newUrl }
-
-    /*   if (blogs.filter((obj) => obj.title === newTitle).length > 0) {
-      if (
-        window.confirm(
-          `${newTitle} is already added, replace the old blog post with a new one?`
-        )
-      ) {
-        const id = blogs.find((blog) => blog.title === newTitle).id
-  
-        noteService
-          .update(id, newBlog)
-          .then((res) => {
-            setBlogs((prevblogs) =>
-              prevblogs.map((blog) => (blog.id !== res.id ? blog : res))
-            )
-            setMessage(`${newBlog.title}'s informations updated`)
-          })
-          .catch((error) => {
-            setMessageClass('error')
-            setMessage('Error occured when updating data. ERROR: ' + error)
-            setTimeout(() => {
-              setMessage('')
-              setMessageClass('notification')
-            }, 5000)
-          })
-      }
-    } else { */
     noteService
       .create(newBlog)
       .then((res) => {
-        setBlogs((oldBlogs) => [...oldBlogs, res])
+        setBlogs((oldBlogs) => [
+          ...oldBlogs,
+          { ...res, user: { username: user.username } },
+        ])
         setMessage(`${newBlog.title} was added succesfully`)
       })
       .catch((error) => {

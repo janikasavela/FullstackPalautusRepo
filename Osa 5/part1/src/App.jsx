@@ -21,6 +21,8 @@ const App = () => {
       setUser(user)
       setIsLogged(true)
       noteService.setToken(user.token)
+      console.log('USER')
+      console.log(user)
     }
   }, [])
 
@@ -67,12 +69,21 @@ const App = () => {
           setMessageClass={setMessageClass}
           setBlogs={setBlogs}
           setAddVisible={setAddVisible}
+          user={user}
         />
       )}
       {isLogged && addVisible && (
         <button onClick={() => setAddVisible(false)}>cancel</button>
       )}
-      {isLogged && <Show blogs={blogs} />}
+      {isLogged && (
+        <Show
+          blogs={blogs}
+          user={user}
+          setMessage={setMessage}
+          setMessageClass={setMessageClass}
+          setBlogs={setBlogs}
+        />
+      )}
       {isLogged && <button onClick={handeLogout}>logout</button>}
     </>
   )

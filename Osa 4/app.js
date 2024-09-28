@@ -53,8 +53,8 @@ const errorHandler = (error, request, response, next) => {
 
 app.use('/api/users', usersRouter)
 app.use(tokenExtractor)
-app.use('/api/blogs', blogsRouter)
 app.use('/api/login', loginRouter)
+app.use('/api/blogs', blogsRouter)
 
 app.use(unknownEndpoint)
 app.use(errorHandler)

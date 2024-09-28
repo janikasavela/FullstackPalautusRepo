@@ -1,11 +1,46 @@
 import { useState } from 'react'
+import noteService from '../services/blogs'
 
-const BlogDetails = ({ blog }) => {
+const BlogDetails = ({
+  blog,
+  user,
+  setMessage,
+  setMessageClass,
+  setBlogs,
+  blogs,
+}) => {
   const [showDetails, setShowDetails] = useState(false)
 
   const handleLike = () => {
-    // Implement the like functionality here (e.g., updating the blog's likes)
-    console.log(`Liked blog: ${blog.title}`)
+    const updatedBlog = { ...blog, likes: blog.likes + 1 }
+
+    noteService
+      .update(blog.id, { likes: blog.likes + 1 })
+      .then(setBlogs(blogs.map((b) => (b.id === blog.id ? updatedBlog : b))))
+      .catch((error) => {
+        setMessageClass('error')
+        setMessage('Error occured when updating data. ERROR: ' + error)
+        setTimeout(() => {
+          setMessage('')
+          setMessageClass('notification')
+        }, 5000)
+      })
+  }
+
+  function handleDelete() {
+    if (window.confirm(`Delete ${blog.title} ?`)) {
+      noteService
+        .deleteBlog(blog.id)
+        .then(setBlogs(blogs.filter((b) => b.id !== blog.id)))
+        .catch((error) => {
+          setMessageClass('error')
+          setMessage('Error occured when deleting data. ERROR: ' + error)
+          setTimeout(() => {
+            setMessage('')
+            setMessageClass('notification')
+          }, 5000)
+        })
+    }
   }
 
   return (
@@ -25,6 +60,10 @@ const BlogDetails = ({ blog }) => {
           <p>Added by: {blog.user ? blog.user.username : 'Unknown'}</p>
           <p></p>
         </div>
+      )}
+
+      {user.username === blog.user?.username && (
+        <button onClick={handleDelete}>delete</button>
       )}
     </div>
   )
