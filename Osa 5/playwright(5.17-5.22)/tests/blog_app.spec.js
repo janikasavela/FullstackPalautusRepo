@@ -134,4 +134,6 @@ describe('When logged in', () => {
 
     await page.getByRole('button', { name: 'view' }).click()
     await expect(page.getByRole('button', { name: 'delete' })).not.toBeVisible()
-  }) })
+  })
+
+})
