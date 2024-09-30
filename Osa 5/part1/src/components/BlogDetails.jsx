@@ -46,7 +46,7 @@ const BlogDetails = ({
   return (
     <div>
       <span>
-        "{blog.title}"" by {blog.author}{' '}
+        "{blog.title}" by {blog.author}{' '}
         <button onClick={() => setShowDetails(!showDetails)}>
           {showDetails ? 'hide' : 'view'}
         </button>

@@ -46,6 +46,7 @@ const LoginForm = ({ setUser, setMessage, setIsLogged, setMessageClass }) => {
         <div>
           username
           <input
+            data-testid='username'
             type='text'
             value={username}
             name='Username'
@@ -55,13 +56,16 @@ const LoginForm = ({ setUser, setMessage, setIsLogged, setMessageClass }) => {
         <div>
           password
           <input
+            data-testid='password'
             type='password'
             value={password}
             name='Password'
             onChange={({ target }) => setPassword(target.value)}
           />
         </div>
-        <button type='submit'>login</button>
+        <button type='submit' name='login'>
+          login
+        </button>
       </form>
     </div>
   )
