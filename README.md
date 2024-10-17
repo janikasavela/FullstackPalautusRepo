@@ -27,3 +27,8 @@ Node express ympäristöön:
 
 - backendin yksikkö- ja integraatiotestaus
 - backendin logiikka käyttäjienhallintaan ja kirjautumiseen
+
+OSA 5:
+
+- kirjautuminen
+- React-sovellusten testaaminen
