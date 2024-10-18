@@ -2,12 +2,22 @@
 
 Kurssilla tutustutaan JavaScriptilla tapahtuvaan moderniin websovelluskehitykseen ja otetaan haltuun React, Redux, Node.js, MongoDB, GraphQL ja TypeScript. Pääpaino on React-kirjaston avulla toteutettavissa single page -sovelluksissa, ja niitä tukevissa Node.js:llä toteutetuissa REST-rajapinnoissa.
 
+OSA 1:
+
+- Reactin perusteet
+
 OSA 2:
 
 Pienet esittelytekstit ja kuvat lisätty näihin:
 
 - 2.6-2.15 (Phonebook) (Julkaistu Fly.io:n kautta osoitteessa https://express-wispy-wind-7618.fly.dev/)
 - 2.16-2.20 (Eri maiden tietojen hakua ja niiden säätiedot kahden eri REST API:n avulla)
+
+Frontendissä:
+
+- Palvelimen kanssa kommunikointi
+- Moduulit
+- Lomakkeiden käsittely
 
 OSA 3:
 
@@ -21,14 +31,23 @@ Requests: GET https://express-wispy-wind-7618.fly.dev/api/persons DELETE https:/
 
 { "name": "new name", "number": "040-1234556" }
 
+Backendissä:
+
+- Node.js ja Express
+- Sovellus internetiin
+- Tietojen tallentaminen MongoDB-tietokantaan
+- Validointi ja ESlint
+
 OSA 4:
 
 Node express ympäristöön:
 
 - Backendin yksikkö- ja integraatiotestaus
 - Backendin logiikka käyttäjienhallintaan ja kirjautumiseen
+- Token-perustainen kirjautuminen
 
 OSA 5:
 
 - Kirjautuminen frontendissä
 - React-sovellusten testaaminen
+- props.children ja proptypet
