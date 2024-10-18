@@ -8,18 +8,25 @@ OSA 1:
 
 OSA 2:
 
-Pienet esittelytekstit ja kuvat lisätty näihin:
-
-- 2.6-2.15 (Phonebook) (Julkaistu Fly.io:n kautta osoitteessa https://express-wispy-wind-7618.fly.dev/)
-- 2.16-2.20 (Eri maiden tietojen hakua ja niiden säätiedot kahden eri REST API:n avulla)
-
 Frontendissä:
 
 - Palvelimen kanssa kommunikointi
 - Moduulit
 - Lomakkeiden käsittely
 
+Pienet esittelytekstit ja kuvat lisätty näihin:
+
+- 2.6-2.15 (Phonebook) (Julkaistu Fly.io:n kautta osoitteessa https://express-wispy-wind-7618.fly.dev/)
+- 2.16-2.20 (Eri maiden tietojen hakua ja niiden säätiedot kahden eri REST API:n avulla)
+
 OSA 3:
+
+Backendissä:
+
+- Node.js ja Express
+- Sovellus internetiin
+- Tietojen tallentaminen MongoDB-tietokantaan
+- Validointi ja ESlint
 
 Oma repo tälle: https://github.com/janikasavela/Fullstack-kurssin-Backend
 
@@ -30,13 +37,6 @@ Julkaistu sovellus: https://express-wispy-wind-7618.fly.dev/
 Requests: GET https://express-wispy-wind-7618.fly.dev/api/persons DELETE https://express-wispy-wind-7618.fly.dev/api/persons/:id POST https://express-wispy-wind-7618.fly.dev/api/persons Content-Type: application/json
 
 { "name": "new name", "number": "040-1234556" }
-
-Backendissä:
-
-- Node.js ja Express
-- Sovellus internetiin
-- Tietojen tallentaminen MongoDB-tietokantaan
-- Validointi ja ESlint
 
 OSA 4:
 
