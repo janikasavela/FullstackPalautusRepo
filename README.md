@@ -51,3 +51,9 @@ OSA 5:
 - Kirjautuminen frontendissä
 - React-sovellusten testaaminen
 - props.children ja proptypet
+
+OSA 6:
+
+- Flux-arkkitehtuuri ja Redux
+- Redux-sovelluksen kommunikointi palvelimen kanssa
+- React Query, useReducer ja context
