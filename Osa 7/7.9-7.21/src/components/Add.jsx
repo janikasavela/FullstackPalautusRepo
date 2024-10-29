@@ -3,7 +3,7 @@ import { useNotification } from '../contexts/NotificationContext';
 import { useQueryClient, useMutation } from '@tanstack/react-query';
 import noteService from '../services/blogs';
 
-const Add = ({ setAddVisible }) => {
+const Add = ({ handleNewBlog }) => {
   const [newTitle, setNewTitle] = useState('');
   const [newAuthor, setNewAuthor] = useState('');
   const [newUrl, setNewUrl] = useState('');
@@ -20,10 +20,10 @@ const Add = ({ setAddVisible }) => {
         'notification',
         5000,
       );
-      setAddVisible(false);
       setNewTitle('');
       setNewAuthor('');
       setNewUrl('');
+      handleNewBlog();
     },
     onError: (error) => {
       showNotificationWithTimeout(

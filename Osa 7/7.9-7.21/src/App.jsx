@@ -1,15 +1,20 @@
 import { useEffect, useState } from 'react';
-import Add from './components/Add';
-import Show from './components/Show';
 import './App.css';
 import Notification from './components/Notification';
 import LoginForm from './components/LoginForm';
 import noteService from './services/blogs';
 import { useUser } from './contexts/UserContext';
+import Menu from './components/Menu';
+import userService from './services/users';
+import { useNotification } from './contexts/NotificationContext';
+import { useNavigate } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
 
 const App = () => {
-  const [addVisible, setAddVisible] = useState(false);
   const { isLogged, dispatch } = useUser();
+  const [users, setUsers] = useState([]);
+  const { showNotificationWithTimeout } = useNotification();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const loggedUserJSON = window.localStorage.getItem('loggedNoteappUser');
@@ -25,26 +30,67 @@ const App = () => {
     }
   }, []);
 
+  useEffect(function () {
+    userService
+      .getAll()
+      .then((res) => setUsers(res))
+      .catch((error) => {
+        showNotificationWithTimeout(
+          `Error fetching users ${error}`,
+          'error',
+          5000,
+        );
+      });
+  }, []);
+
+  const {
+    data: blogs,
+    isError,
+    isPending,
+  } = useQuery({
+    queryKey: ['blogs'],
+    queryFn: noteService.getAll,
+  });
+
+  // Logataan haetut blogit
+  console.log('Fetched blogs:', blogs);
+  if (isPending) {
+    return <div>loading data...</div>;
+  }
+
+  if (isError) {
+    showNotificationWithTimeout(`Error fetching blogs`, 'error', 5000);
+  }
+
   const handleLogout = () => {
     window.localStorage.removeItem('loggedNoteappUser');
     noteService.setToken(null);
     dispatch({
       type: 'CLEAR_USER',
     });
+    navigate('/');
+  };
+
+  const handleNewBlog = async () => {
+    try {
+      const res = await userService.getAll();
+      setUsers(res);
+    } catch (error) {
+      showNotificationWithTimeout(
+        `Error updating users: ${error}`,
+        'error',
+        5000,
+      );
+    }
   };
 
   return (
     <>
       <Notification />
       {!isLogged && <LoginForm />}
-      {isLogged && !addVisible && (
-        <button onClick={() => setAddVisible(true)}>add blog</button>
+      {isLogged && (
+        <Menu users={users} handleNewBlog={handleNewBlog} blogs={blogs} />
       )}
-      {isLogged && addVisible && <Add setAddVisible={setAddVisible} />}
-      {isLogged && addVisible && (
-        <button onClick={() => setAddVisible(false)}>cancel</button>
-      )}
-      {isLogged && <Show />}
       {isLogged && <button onClick={handleLogout}>logout</button>}
     </>
   );
