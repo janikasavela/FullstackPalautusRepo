@@ -1,4 +1,4 @@
-import { Routes, Route, Link } from 'react-router-dom';
+import { Routes, Route, NavLink as BaseNavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import Show from './Show';
 import Add from './Add';
@@ -14,7 +14,7 @@ const Navbar = styled.nav`
   align-items: center;
 `;
 
-const NavLink = styled(Link)`
+const NavLink = styled(BaseNavLink)`
   color: #fff;
   padding: 10px;
   text-decoration: none;
@@ -34,15 +34,27 @@ const ContentWrapper = styled.div`
   padding: 20px;
 `;
 
-const Menu = ({ users, handleNewBlog, blogs }) => {
+const LogoutButton = styled.button`
+  background-color: #d73f8c;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: auto;
+  &:hover {
+    background-color: violet;
+  }
+`;
+
+const Menu = ({ users, handleNewBlog, blogs, handleLogout }) => {
   return (
     <>
       <Navbar>
-        <NavLink to="/" end="true">
-          Blogs
-        </NavLink>
+        <NavLink to="/">Blogs</NavLink>
         <NavLink to="/create">Create New</NavLink>
         <NavLink to="/users">Users</NavLink>
+        <LogoutButton onClick={handleLogout}>Logout</LogoutButton>
       </Navbar>
       <Notification />
       <ContentWrapper>

@@ -117,9 +117,13 @@ const App = () => {
         </>
       )}
       {isLogged && (
-        <Menu users={users} handleNewBlog={handleNewBlog} blogs={blogs} />
+        <Menu
+          users={users}
+          handleNewBlog={handleNewBlog}
+          blogs={blogs}
+          handleLogout={handleLogout}
+        />
       )}
-      {isLogged && <Button onClick={handleLogout}>logout</Button>}
     </Container>
   );
 };
