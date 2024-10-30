@@ -9,9 +9,6 @@ Blogilista sovellus:
 
 Voit kokeilla sovellusta kopioimalla repot, aja sekä backendissa että frontendissa npm install. Käynnistä backend komennolla npm start ja frontend npm run dev. Voit kirjautua sovellukseen testikäyttäjällä: Käyttäjänimi Valla ja salasana Valla
 
-ReadMe ja lisää kuvia projektista (Osa 7 / 7.9-7.21 kansio):
-https://github.com/janikasavela/FullstackPalautusRepo/tree/main/Osa%207/7.9-7.21
-
-![alt text](image-1.png)
-![alt text](image-2.png)
-![alt text](image.png)
+<img src="image-1.png" alt="alt text" width="600"/>
+<img src="image-2.png" alt="alt text" width="600"/>
+<img src="image.png" alt="alt text" width="600"/>
