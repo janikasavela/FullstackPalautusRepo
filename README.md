@@ -57,3 +57,25 @@ OSA 6:
 - Flux-arkkitehtuuri ja Redux
 - Redux-sovelluksen kommunikointi palvelimen kanssa
 - React Query, useReducer ja context
+
+OSA 7:
+
+- React Router
+- custom-hookit
+- Lisää tyyleistä
+- Webpack
+- Luokkakomponentit, Sekalaista web kehityksestä
+
+Laajensin osan 5 blogilista sovellusta:
+
+- Tyylittely toteutettu styled-components-kirjaston avulla
+- Tilan hallinta toteutettu React Queryä, useReducer-hookia ja Contextia käyttäen
+- Lisätty näkymä mm käyttäjille
+- Navigaatiomenu
+- Blogien kommentointi lisätty
+- Backendiin lisätty toiminnalisuudet kommentointiin
+
+ReadMe ja lisää kuvia projektista (Osa 7 / 7.9-7.21 kansio):
+https://github.com/janikasavela/FullstackPalautusRepo/tree/main/Osa%207/7.9-7.21
+
+![alt text](image.png)
