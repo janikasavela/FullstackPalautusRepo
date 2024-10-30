@@ -1,8 +1,42 @@
+import styled from 'styled-components';
 import { useState } from 'react';
 import noteService from '../services/blogs';
 import { useNotification } from '../contexts/NotificationContext';
 import loginService from '../services/login';
 import { useUser } from '../contexts/UserContext';
+
+const FormContainer = styled.div`
+  max-width: 400px;
+  margin: auto;
+  margin-top: 50px;
+  padding: 20px;
+  background-color: #f7f7f7;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+`;
+
+const InputField = styled.input`
+  width: 100%;
+  padding: 8px;
+  margin: 10px 0;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+`;
+
+const Button = styled.button`
+  width: 100%;
+  padding: 10px;
+  background-color: #007acc;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+
+  &:hover {
+    background-color: #005fa3;
+  }
+`;
 
 const LoginForm = () => {
   const [username, setUsername] = useState('');
@@ -12,22 +46,11 @@ const LoginForm = () => {
 
   const handleLogin = async (event) => {
     event.preventDefault();
-    console.log('logging in with', username, password);
-
     try {
-      const user = await loginService.login({
-        username,
-        password,
-      });
-
+      const user = await loginService.login({ username, password });
       window.localStorage.setItem('loggedNoteappUser', JSON.stringify(user));
-
-      console.log(user);
       noteService.setToken(user.token);
-      userDispatch({
-        type: 'SET_USER',
-        payload: { user },
-      });
+      userDispatch({ type: 'SET_USER', payload: { user } });
       setUsername('');
       setPassword('');
       showNotificationWithTimeout(
@@ -35,40 +58,34 @@ const LoginForm = () => {
         'notification',
         5000,
       );
-    } catch (exception) {
+    } catch {
       showNotificationWithTimeout('wrong username or password', 'error', 5000);
     }
   };
 
   return (
-    <div>
+    <FormContainer>
       <h2>Login</h2>
       <form onSubmit={handleLogin}>
-        <div>
-          username
-          <input
-            data-testid="username"
-            type="text"
-            value={username}
-            name="Username"
-            onChange={({ target }) => setUsername(target.value)}
-          />
-        </div>
-        <div>
-          password
-          <input
-            data-testid="password"
-            type="password"
-            value={password}
-            name="Password"
-            onChange={({ target }) => setPassword(target.value)}
-          />
-        </div>
-        <button type="submit" name="login">
-          login
-        </button>
+        <label>Username</label>
+        <InputField
+          data-testid="username"
+          type="text"
+          value={username}
+          name="Username"
+          onChange={({ target }) => setUsername(target.value)}
+        />
+        <label>Password</label>
+        <InputField
+          data-testid="password"
+          type="password"
+          value={password}
+          name="Password"
+          onChange={({ target }) => setPassword(target.value)}
+        />
+        <Button type="submit">Login</Button>
       </form>
-    </div>
+    </FormContainer>
   );
 };
 

@@ -29,6 +29,7 @@ router.post('/', userExtractor, async (req, res) => {
     url,
     likes: likes ? likes : 0,
     user: user._id,
+    comments: [],
   })
 
   const savedBlog = await blog.save()
@@ -71,6 +72,23 @@ router.put('/:id', async (req, res) => {
   if (!blog) res.status(404).send('The blog with the given ID was not found')
 
   res.send(blog)
+})
+
+router.post('/:id/comments', async (req, res) => {
+  const { comment } = req.body
+  if (!comment) {
+    return res.status(400).json({ error: 'Comment is required' })
+  }
+
+  const blog = await Blog.findById(req.params.id)
+  if (!blog) {
+    return res.status(404).send('Blog not found')
+  }
+
+  blog.comments = blog.comments.concat(comment)
+  const updatedBlog = await blog.save()
+
+  res.status(201).send(updatedBlog)
 })
 
 module.exports = router

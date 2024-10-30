@@ -9,6 +9,30 @@ import userService from './services/users';
 import { useNotification } from './contexts/NotificationContext';
 import { useNavigate } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
+import styled from 'styled-components';
+
+const Button = styled.button`
+  background-color: #2a78de;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin: 30px;
+  max-width: 100px;
+
+  &:hover {
+    background-color: #4888db;
+  }
+`;
+
+const Container = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: left;
+  flex-direction: column;
+`;
 
 const App = () => {
   const { isLogged, dispatch } = useUser();
@@ -85,14 +109,18 @@ const App = () => {
   };
 
   return (
-    <>
-      <Notification />
-      {!isLogged && <LoginForm />}
+    <Container>
+      {!isLogged && (
+        <>
+          <Notification />
+          <LoginForm />
+        </>
+      )}
       {isLogged && (
         <Menu users={users} handleNewBlog={handleNewBlog} blogs={blogs} />
       )}
-      {isLogged && <button onClick={handleLogout}>logout</button>}
-    </>
+      {isLogged && <Button onClick={handleLogout}>logout</Button>}
+    </Container>
   );
 };
 

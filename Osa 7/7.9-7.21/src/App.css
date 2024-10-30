@@ -1,19 +1,23 @@
+body {
+  background-color: #f9f9f9;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  min-height: 100vh;
+}
 .notification {
-  color: green;
-  background: lightgrey;
+  color: #65bf68;
   font-size: 20px;
   border-style: solid;
   border-radius: 5px;
   padding: 10px;
-  margin-bottom: 10px;
+  margin-top: 10px;
 }
 
 .error {
-  color: red;
-  background: lightgrey;
+  color: #ba4c4c;
   font-size: 20px;
   border-style: solid;
   border-radius: 5px;
   padding: 10px;
-  margin-bottom: 10px;
+  margin-top: 10px;
 }

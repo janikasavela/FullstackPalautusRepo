@@ -1,6 +1,8 @@
 import User from '../components/User';
 
 const Users = ({ users }) => {
+  if (!users) return <p>Loading users..</p>;
+
   return (
     <>
       <h2>Users</h2>
