@@ -78,4 +78,4 @@ Laajensin osan 5 blogilista sovellusta:
 ReadMe ja lisää kuvia projektista (Osa 7 / 7.9-7.21 kansio):
 https://github.com/janikasavela/FullstackPalautusRepo/tree/main/Osa%207/7.9-7.21
 
-<img src="image.png" alt="alt text" width="500"/>
+<img src="image.png" alt="alt text" width="550"/>

@@ -9,6 +9,6 @@ Blogilista sovellus:
 
 Voit kokeilla sovellusta kopioimalla repot, aja sekä backendissa että frontendissa npm install. Käynnistä backend komennolla npm start ja frontend npm run dev. Voit kirjautua sovellukseen testikäyttäjällä: Käyttäjänimi Valla ja salasana Valla
 
-<img src="image-1.png" alt="alt text" width="500"/>
-<img src="image-2.png" alt="alt text" width="500"/>
-<img src="image.png" alt="alt text" width="500"/>
+<img src="image-1.png" alt="alt text" width="550"/>
+<img src="image-2.png" alt="alt text" width="550"/>
+<img src="image.png" alt="alt text" width="550"/>
