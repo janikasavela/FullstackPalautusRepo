@@ -17,7 +17,10 @@ const CREATE_BOOK = gql`
       title
       published
       id
-      author
+      author {
+        name
+        id
+      }
       genres
     }
   }
