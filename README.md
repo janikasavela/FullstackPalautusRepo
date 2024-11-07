@@ -79,3 +79,11 @@ ReadMe ja lisää kuvia projektista (Osa 7 / 7.9-7.21 kansio):
 https://github.com/janikasavela/FullstackPalautusRepo/tree/main/Osa%207/7.9-7.21
 
 <img src="image.png" alt="alt text" width="550"/>
+
+OSA 8:
+
+- GraphQL-palvelin
+- React ja GraphQL
+- Tietokanta ja käyttäjien hallinta (MongoDB)
+- Kirjautuminen ja välimuistin päivitys
+- Fragmentit ja subskriptiot
