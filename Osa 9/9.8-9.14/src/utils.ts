@@ -1,5 +1,5 @@
-import { NewPatient, Gender } from './types'
-import * as z from 'zod'
+import { NewPatient, Gender } from './types';
+import * as z from 'zod';
 
 /* 
 const isString = (text: unknown): text is string => {
@@ -71,8 +71,8 @@ export const newPatientSchema = z.object({
   ssn: z.string(),
   gender: z.nativeEnum(Gender),
   occupation: z.string(),
-})
+});
 
 export const toNewPatientEntry = (object: unknown): NewPatient => {
-  return newPatientSchema.parse(object)
-}
+  return newPatientSchema.parse(object);
+};
