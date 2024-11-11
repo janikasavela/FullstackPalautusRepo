@@ -3,9 +3,11 @@ import cors from 'cors';
 const app = express();
 import diagnoseRouter from './routes/diagnosis';
 import patientRouter from './routes/patients';
+import errorMiddleware from './middleware/errorMiddleware';
 
 app.use(cors());
 app.use(express.json());
+app.use(errorMiddleware);
 
 const PORT = 3001;
 

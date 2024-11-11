@@ -1,4 +1,4 @@
-import { NewPatient, Gender } from './types';
+import { NewPatient, Gender, Diagnose } from './types';
 import * as z from 'zod';
 
 /* 
@@ -74,5 +74,65 @@ export const newPatientSchema = z.object({
 });
 
 export const toNewPatientEntry = (object: unknown): NewPatient => {
-  return newPatientSchema.parse(object);
+  const parsedData = newPatientSchema.parse(object);
+  return {
+    ...parsedData,
+    entries: [],
+  };
 };
+
+export const parseDiagnosisCodes = (
+  object: unknown
+): Array<Diagnose['code']> => {
+  if (!object || typeof object !== 'object' || !('diagnosisCodes' in object)) {
+    // we will just trust the data to be in correct form
+    return [] as Array<Diagnose['code']>;
+  }
+
+  return object.diagnosisCodes as Array<Diagnose['code']>;
+};
+
+export const baseEntrySchema = z.object({
+  description: z.string(),
+  date: z
+    .string()
+    .refine((date) => !isNaN(Date.parse(date)), { message: 'Invalid date' }),
+  specialist: z.string(),
+  diagnosisCodes: z.array(z.string()).optional(),
+});
+
+export const healthCheckEntrySchema = baseEntrySchema.extend({
+  type: z.literal('HealthCheck'),
+  healthCheckRating: z.number().int().min(0).max(3),
+});
+
+export const hospitalEntrySchema = baseEntrySchema.extend({
+  type: z.literal('Hospital'),
+  discharge: z.object({
+    date: z
+      .string()
+      .refine((date) => !isNaN(Date.parse(date)), { message: 'Invalid date' }),
+    criteria: z.string(),
+  }),
+});
+
+export const occupationalHealthcareEntrySchema = baseEntrySchema.extend({
+  type: z.literal('OccupationalHealthcare'),
+  employerName: z.string(),
+  sickLeave: z
+    .object({
+      startDate: z.string().refine((date) => !isNaN(Date.parse(date)), {
+        message: 'Invalid start date',
+      }),
+      endDate: z.string().refine((date) => !isNaN(Date.parse(date)), {
+        message: 'Invalid end date',
+      }),
+    })
+    .optional(),
+});
+
+export const entrySchema = z.union([
+  healthCheckEntrySchema,
+  hospitalEntrySchema,
+  occupationalHealthcareEntrySchema,
+]);
