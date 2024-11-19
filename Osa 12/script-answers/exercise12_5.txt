@@ -1,0 +1,12 @@
+janika@LAPTOP-18I7AF5V:~$ docker run -p 3000:3000 \
+  -e PORT=3000 \
+  -e MONGO_URL="mongodb://host.docker.internal:27017/tododb" \
+  -e REDIS_URL="redis://host.docker.internal:6379" \
+  todo-backend
+
+> todo-express-backend@0.0.0 start
+> node ./bin/www
+
+GET / 200 27.204 ms - 118
+GET / 200 1.786 ms - 118
+

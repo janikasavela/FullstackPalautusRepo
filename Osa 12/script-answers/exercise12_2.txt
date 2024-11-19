@@ -1,0 +1,5 @@
+12.2: 
+janika@LAPTOP-18I7AF5V:~$ docker container run -it ubuntu bash
+root@0ddca8e651a9:/# mkdir -p /usr/src/app
+root@0ddca8e651a9:/# touch /usr/src/app/index.js
+root@0ddca8e651a9:/# exit

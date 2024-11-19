@@ -1,0 +1,12 @@
+janika@LAPTOP-18I7AF5V:~/Osa 12/todo-app/todo-backend$ docker compose up
+[+] Running 2/2
+ ? Network todo-backend_default  Created                                                               0.2s
+ ? Container todo-backend-app-1  Created                                                               0.3s
+Attaching to app-1
+app-1  |
+app-1  | > todo-express-backend@0.0.0 start
+app-1  | > node ./bin/www
+app-1  |
+app-1  | GET / 200 6.192 ms - 126
+app-1  | GET / 200 1.540 ms - 126
+app-1  | GET / 200 1.083 ms - 126

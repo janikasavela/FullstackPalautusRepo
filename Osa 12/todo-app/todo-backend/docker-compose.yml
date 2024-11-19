@@ -1,0 +1,10 @@
+services:
+  app:
+    image: todo-backend
+    build: .
+    ports:
+      - '3000:3000'
+    environment:
+      - PORT=3000
+      - MONGO_URL="mongodb://host.docker.internal:27017/tododb"
+      - REDIS_URL="redis://host.docker.internal:6379"
