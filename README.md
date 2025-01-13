@@ -98,4 +98,4 @@ Toteutin osiossa myös projektin johon sekä frontendin että backendin jotka l�
 
 OSA 12:
 
-Aiheena kontit, tarkemmin ottaen Docker. Harjoituksissa mm. käytetään säilöjä luodaam muuttumattomia suoritysympäristöjä Node.js- ja React-projekteille sekä tutkitaan ja kokeillaan monia erilaisia ja suosittuja työkaluja konttien käytössä.
+Aiheena kontit, tarkemmin ottaen Docker. Harjoituksissa mm. käytetään säilöjä luomaan muuttumattomia suoritysympäristöjä Node.js- ja React-projekteille sekä tutkitaan ja kokeillaan monia erilaisia ja suosittuja työkaluja konttien käytössä.
