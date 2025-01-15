@@ -17,6 +17,7 @@ export const GET_REPOSITORIES = gql`
           description
           language
           ownerAvatarUrl
+          url
         }
       }
     }
@@ -28,6 +29,46 @@ export const ME_QUERY = gql`
     me {
       id
       username
+    }
+  }
+`
+
+export const GET_REPOSITORY = gql`
+  query Repository($id: ID!) {
+    repository(id: $id) {
+      id
+      fullName
+      description
+      language
+      url
+      ownerAvatarUrl
+      stargazersCount
+      forksCount
+      reviewCount
+      ratingAverage
+    }
+  }
+`
+
+export const GET_REVIEWS = gql`
+  query Repository($id: ID!) {
+    repository(id: $id) {
+      id
+      fullName
+      reviews {
+        edges {
+          node {
+            id
+            text
+            rating
+            createdAt
+            user {
+              id
+              username
+            }
+          }
+        }
+      }
     }
   }
 `
