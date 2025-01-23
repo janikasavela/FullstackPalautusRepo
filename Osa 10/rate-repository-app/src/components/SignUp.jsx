@@ -4,29 +4,46 @@ import * as yup from 'yup'
 
 import Text from './Text'
 import theme from '../theme'
+import useCreateUser from '../hooks/useCreateUser'
 import useSignIn from '../hooks/useSignIn'
 
 const initialValues = {
   username: '',
   password: '',
+  password2: '',
 }
 
 const validationSchema = yup.object().shape({
-  username: yup.string().required('Username is required'),
-  password: yup.string().required('Password is required'),
+  username: yup
+    .string()
+    .min(5, 'Too Short!')
+    .max(30, 'Too Long!')
+    .required('Username is required'),
+  password: yup
+    .string()
+    .min(5, 'Too Short!')
+    .max(50, 'Too Long!')
+    .required('Password is required'),
+  password2: yup
+    .string()
+    .test('passwords-match', 'Passwords must match', function (value) {
+      return this.parent.password === value
+    })
+    .required('Password confirmation is required'),
 })
 
-const SignIn = () => {
+const SignUp = () => {
+  const [createUser] = useCreateUser()
   const [signIn] = useSignIn()
 
   const onSubmit = async (values) => {
     const { username, password } = values
 
     try {
-      const accessToken = await signIn({ username, password })
-      console.log('Access token: ', accessToken)
+      await createUser(username, password)
+      signIn({ username, password })
     } catch (e) {
-      console.log('Sign-in failed: ', e)
+      console.error('Sign up failed', e.message)
     }
   }
 
@@ -59,6 +76,19 @@ const SignIn = () => {
       {formik.touched.password && formik.errors.password && (
         <Text color='red' styles={styles.text}>
           {formik.errors.password}
+        </Text>
+      )}
+      <TextInput
+        style={[styles.input, formik.errors.password2 && styles.inputError]}
+        placeholder='Password confirmation'
+        placeholderTextColor={theme.colors.textSecondary}
+        value={formik.values.password2}
+        onChangeText={formik.handleChange('password2')}
+        secureTextEntry
+      />
+      {formik.touched.password2 && formik.errors.password2 && (
+        <Text color='red' styles={styles.text}>
+          {formik.errors.password2}
         </Text>
       )}
       <Pressable style={styles.button} onPress={formik.handleSubmit}>
@@ -100,4 +130,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default SignIn
+export default SignUp

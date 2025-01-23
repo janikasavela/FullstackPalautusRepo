@@ -29,23 +29,37 @@ const AppBar = () => {
           </Text>
         </Link>
         {isAuthenticated ? (
-          <Link
-            to='/signin'
-            style={styles.link}
-            onPress={async () => {
-              await signOut()
-            }}
-          >
-            <Text color='white' fontWeight='bold'>
-              Sign out
-            </Text>
-          </Link>
+          <>
+            <Link to='/review' style={styles.link}>
+              <Text color='white' fontWeight='bold'>
+                Create a review
+              </Text>
+            </Link>
+            <Link
+              to='/signin'
+              style={styles.link}
+              onPress={async () => {
+                await signOut()
+              }}
+            >
+              <Text color='white' fontWeight='bold'>
+                Sign out
+              </Text>
+            </Link>
+          </>
         ) : (
-          <Link to='/signin' style={styles.link}>
-            <Text color='white' fontWeight='bold'>
-              Sign in
-            </Text>
-          </Link>
+          <>
+            <Link to='/signin' style={styles.link}>
+              <Text color='white' fontWeight='bold'>
+                Sign in
+              </Text>
+            </Link>
+            <Link to='/signup' style={styles.link}>
+              <Text color='white' fontWeight='bold'>
+                Sign up
+              </Text>
+            </Link>
+          </>
         )}
       </ScrollView>
     </View>

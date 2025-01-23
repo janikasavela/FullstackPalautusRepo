@@ -29,6 +29,7 @@ const RepositoryView = () => {
   const { repoId } = useParams()
   const { data, loading, error } = useQuery(GET_REPOSITORY, {
     variables: { id: repoId },
+    fetchPolicy: 'cache-and-network',
   })
   const {
     data: reviewsData,
