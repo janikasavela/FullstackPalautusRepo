@@ -1,4 +1,4 @@
-import { FlatList, View, StyleSheet, Pressable } from 'react-native'
+import { FlatList, View, StyleSheet, Pressable, TextInput } from 'react-native'
 import { useNavigate } from 'react-router-native'
 import { Picker } from '@react-native-picker/picker'
 import { useState } from 'react'
@@ -6,6 +6,7 @@ import { useState } from 'react'
 import RepositoryItem from './RepositoryItem'
 import useRepositories from '../hooks/useRepositories'
 import Text from './Text'
+import theme from '../theme'
 
 const styles = StyleSheet.create({
   pickerContainer: {
@@ -17,14 +18,14 @@ const styles = StyleSheet.create({
   picker: {
     backgroundColor: '#f0f0f0',
     borderRadius: 5,
-    height: 40, // Pienennetään korkeutta, jotta se vie vähemmän tilaa
-    width: 180, // Voit säätää leveyttä tarpeen mukaan
-    justifyContent: 'center', // Keskitetään teksti
+    height: 40,
+    width: 180,
+    justifyContent: 'center',
   },
   pickerText: {
     fontSize: 16,
     padding: 10,
-    textAlign: 'center', // Keskitetään teksti
+    textAlign: 'center',
   },
   separator: {
     height: 10,
@@ -33,6 +34,16 @@ const styles = StyleSheet.create({
     fontSize: 16,
     padding: 10,
     textAlign: 'center',
+  },
+  searchInput: {
+    borderWidth: 1,
+    borderColor: theme.colors.textSecondary,
+    borderRadius: 4,
+    padding: 10,
+    color: theme.colors.textPrimary,
+    fontSize: theme.fontSizes.body,
+    marginVertical: 10,
+    backgroundColor: 'white',
   },
 })
 
@@ -46,6 +57,26 @@ export const RepositoryListContainer = ({
   orderDirection,
 }) => {
   const [pickerVisible, setPickerVisible] = useState(false)
+  const [query, setQuery] = useState('')
+  const [filteredRepositories, setFilteredRepositories] = useState([])
+
+  const handleChange = (text) => {
+    setQuery(text)
+
+    if (text === '') {
+      setFilteredRepositories([])
+    } else {
+      const newFilteredRepositories = repositories.edges
+        .map((edge) => edge.node)
+        .filter(
+          (repo) =>
+            repo.fullName.toLowerCase().includes(text.toLowerCase()) ||
+            repo.description.toLowerCase().includes(text.toLowerCase())
+        )
+
+      setFilteredRepositories(newFilteredRepositories)
+    }
+  }
 
   const handleOrderChange = (value) => {
     if (value === 'latest') {
@@ -58,7 +89,7 @@ export const RepositoryListContainer = ({
       setOrderBy('RATING_AVERAGE')
       setOrderDirection('ASC')
     }
-    setPickerVisible(false) // Sulje picker valinta jälkeen
+    setPickerVisible(false)
   }
 
   const navigate = useNavigate()
@@ -67,13 +98,16 @@ export const RepositoryListContainer = ({
     ? repositories.edges.map((edge) => edge.node)
     : []
 
+  const repositoriesToDisplay =
+    query.length > 0 ? filteredRepositories : repositoryNodes
+
   const handlePress = (repoId) => {
     navigate(`/repositoryView/${repoId}`)
   }
 
   return (
     <FlatList
-      data={repositoryNodes}
+      data={repositoriesToDisplay}
       ItemSeparatorComponent={ItemSeparator}
       ListHeaderComponent={
         <View style={styles.pickerContainer}>
@@ -114,6 +148,12 @@ export const RepositoryListContainer = ({
               </Picker>
             </View>
           )}
+          <TextInput
+            style={styles.searchInput}
+            placeholder='Search repositories'
+            value={query}
+            onChangeText={(text) => handleChange(text)}
+          />
         </View>
       }
       renderItem={({ item }) => (

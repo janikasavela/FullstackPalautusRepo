@@ -35,6 +35,11 @@ const AppBar = () => {
                 Create a review
               </Text>
             </Link>
+            <Link to='/reviews' style={styles.link}>
+              <Text color='white' fontWeight='bold'>
+                My reviews
+              </Text>
+            </Link>
             <Link
               to='/signin'
               style={styles.link}

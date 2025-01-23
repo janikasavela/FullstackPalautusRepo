@@ -7,6 +7,7 @@ import AppBar from './AppBar'
 import SignIn from './SignIn'
 import SignUp from './SignUp'
 import ReviewForm from './ReviewForm'
+import MyReviews from './MyReviews'
 
 const Main = () => {
   return (
@@ -18,6 +19,7 @@ const Main = () => {
         <Route path='/signin' element={<SignIn />} />
         <Route path='/signup' element={<SignUp />} />
         <Route path='/review' element={<ReviewForm />} />
+        <Route path='/reviews' element={<MyReviews />} />
         <Route path='*' element={<Navigate to='/' replace />} />
       </Routes>
     </View>
