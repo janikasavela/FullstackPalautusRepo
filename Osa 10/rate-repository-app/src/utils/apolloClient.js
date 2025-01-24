@@ -1,6 +1,7 @@
 import { ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client'
 import { setContext } from '@apollo/client/link/context'
 import Constants from 'expo-constants'
+import { relayStylePagination } from '@apollo/client/utilities'
 
 const createApolloClient = (authStorage) => {
   const httpLink = createHttpLink({
@@ -10,12 +11,12 @@ const createApolloClient = (authStorage) => {
   const authLink = setContext(async (_, { headers }) => {
     try {
       const accessToken = await authStorage.getAccessToken()
-      console.log('Accesstoken', accessToken)
+      console.log('Access token:', accessToken)
 
       return {
         headers: {
           ...headers,
-          authorization: accessToken ? `Bearer ${accessToken}` : '', // Add the Bearer token if available
+          authorization: accessToken ? `Bearer ${accessToken}` : '',
         },
       }
     } catch (e) {
@@ -28,7 +29,20 @@ const createApolloClient = (authStorage) => {
 
   return new ApolloClient({
     link: authLink.concat(httpLink),
-    cache: new InMemoryCache(),
+    cache: new InMemoryCache({
+      typePolicies: {
+        Query: {
+          fields: {
+            repositories: relayStylePagination(),
+          },
+        },
+        Repository: {
+          fields: {
+            reviews: relayStylePagination(),
+          },
+        },
+      },
+    }),
   })
 }
 

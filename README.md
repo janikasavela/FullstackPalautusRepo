@@ -96,6 +96,37 @@ OSA 9:
 
 Toteutin osiossa myös projektin johon sekä frontendin että backendin jotka löytyvät osion kansiosta 9.8-9.14&9.20-9.30. Kyseisen sovelluksen tarkoituksena on hallita potilastietoja ja lääketieteellisiä merkintöjä. Frontend on rakennettu Reactilla, ja siinä käyttäjät voivat tarkastella potilastietoja, kuten nimi, sukupuoli, ammatti ja sairaushistoria. Lisäksi käyttäjät voivat lisätä uusia lääketieteellisiä merkintöjä, kuten terveystarkastuksia, sairaalahoitoja tai työterveyshuoltoa, ja liittää niihin diagnoosikoodeja. Backend, joka on rakennettu Node.js ja express teknologialla käyttää tietokantaa, käsittelee potilastietojen tallentamisen ja hakemisen. Sovelluksen avulla terveydenhuollon ammattilaiset voivat seurata potilaidensa hoitohistoriaa ja lisätä uusia merkintöjä.
 
+OSA 10:
+Aiheena React Native, jolla toteutettiin puhelinsovellus, käyttäen Expoa.
+
+Sovelluksessa voi kirjautua ja arvostella GitHub Repositoryja, seka tarkastella/poistaa antamiaan arvosteluja.
+
+Käytetyt tekniikat ja teknologiat:
+
+- React Native ja Expo
+- ESLint
+- React DevTools
+- React Native Core Components
+- Styling and theming
+- Flexbox for layout
+- Routing
+- Form state management (Formik)
+- Form validation (Yup)
+- Platform-specific code
+- Communatiing with server (HTTP, GraphQL and Apollo)
+- Environment variables
+- Async-storage
+- React Context
+- Testing React Native applications
+- Linking APi (https://docs.expo.dev/versions/latest/sdk/linking/)
+- React Native Picker
+- Infinite scrolling
+
+<img src="IMG_7099.png" width="550"/>
+<img src="IMG_7100.png" width="550"/>
+<img src="IMG_7101.png" width="550"/>
+<img src="IMG_7102.png" width="550"/>
+
 OSA 12:
 
 Aiheena kontit, tarkemmin ottaen Docker. Harjoituksissa mm. käytetään säilöjä luomaan muuttumattomia suoritysympäristöjä Node.js- ja React-projekteille sekä tutkitaan ja kokeillaan monia erilaisia ja suosittuja työkaluja konttien käytössä.

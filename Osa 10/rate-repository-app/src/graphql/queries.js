@@ -53,7 +53,7 @@ export const GET_REPOSITORY = gql`
   }
 `
 
-export const GET_REVIEWS = gql`
+/* export const GET_REVIEWS = gql`
   query Repository($id: ID!) {
     repository(id: $id) {
       id
@@ -70,6 +70,36 @@ export const GET_REVIEWS = gql`
               username
             }
           }
+        }
+      }
+    }
+  }
+` */
+
+export const GET_REVIEWS = gql`
+  query Repository($id: ID!, $first: Int, $after: String) {
+    repository(id: $id) {
+      id
+      fullName
+      reviews(first: $first, after: $after) {
+        totalCount
+        edges {
+          node {
+            id
+            text
+            rating
+            createdAt
+            user {
+              id
+              username
+            }
+          }
+          cursor
+        }
+        pageInfo {
+          endCursor
+          startCursor
+          hasNextPage
         }
       }
     }
