@@ -1,0 +1,12 @@
+Tässä harjoituksessa oletetaan, että sovellus on kehitetty Pythonilla, jota tunnen jonkin verran, mutta en ole käyttänyt sitä laajasti. Alla pohdintoja sovelluksen CI-prosessista.
+
+Linting tarkoittaa koodin pitämistä yleisten tyyliohjeiden mukaisena ja virhevapaana. Pythonille tähän tarkoitukseen löytyy kirjastoja kuten: 
+- Flake8: Koodin tyylin ja laadun tarkastukseen
+- Black: Automaattimen muotoilu yhtenäisen koodaustyylin takaamiseksi, jotta koodia on helpompi tulkita
+- Pylint: Monipuolinen linting-työkalu, joka tarjoaa kattavan analyysin koodista
+
+Koodin testaamiseen on Pythonille myös useita varteenotettavia kirjastoja, suosituin tällä hetkellä Pytest, jolla voi kirjoittaa ja suorittaa testikoodeja. Unittest on Pythonin sisäänrakennettu testiympäristö ja sopii hyvin pienempiin projekteihin. Buildauksessa voisi hyödyntää Setuptoolsia Python-pakettien luomiseen ja hallintaan. Dockeria jolla voidaan pakata sovellus konttiin, joka takaa yhtenäisen suoritusympäristön. Myös Poetry on yksi mahdollinen työkalu buildaukseen ja riippuvuuksien hallintaan.
+
+Jenkins ja Github Actioneille hyviä vaihtoehtoja on ainakin CircleCI, joka on tunnettu helppokäyttöisyydestä ja sopii erinomaisesti Python projekteille. Myös Azure DevOps Pipelines on tutustumisen arvoinen vaihtoehto, ja skaalautuu hyvin sovelluksen tarpeiden mukaisesti.
+
+Kun mietitään onko parempi itse isännöity vai pilvipalvelupohjainen ympäristö, tulee pohtia budjettia, turvallisuusvaatimuksia, kehitystiimin osaamista infrastruktuurin ylläpidossa sekä CI/CD-toimintojen skaalautuvuuden tarve. Pilvipalvelun etuja ovat helppokäyttöisyys, skaalautuvuus sekä alhaisemmat ylläpitokustannukset. Miinuspuolena mahdolliset tietoturva- ja säädöshaasteet. Kun taas itse isännöidyssä ympäristössä täysi infrastruktuurin hallinta, joka on parempi arkaluontoisille tiedoille. Ylläpitokustannukset ovat luonnollisesti korkeammat ja teknisen osaamisen tarve suurempaa. 

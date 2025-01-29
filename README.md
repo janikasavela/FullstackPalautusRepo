@@ -128,6 +128,11 @@ Käytetyt tekniikat ja teknologiat:
 <img src="IMG_7101.png" width="550"/>
 <img src="IMG_7102.png" width="550"/>
 
+OSA 11:
+Aiheena CI/CD ja Github Actions.
+Kyseisen osion koodit löytyy omasta repositorysta täältä:
+https://github.com/janikasavela/full-stack-open-pokedex
+
 OSA 12:
 
 Aiheena kontit, tarkemmin ottaen Docker. Harjoituksissa mm. käytetään säilöjä luomaan muuttumattomia suoritysympäristöjä Node.js- ja React-projekteille sekä tutkitaan ja kokeillaan monia erilaisia ja suosittuja työkaluja konttien käytössä.
