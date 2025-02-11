@@ -136,3 +136,11 @@ https://github.com/janikasavela/full-stack-open-pokedex
 OSA 12:
 
 Aiheena kontit, tarkemmin ottaen Docker. Harjoituksissa mm. käytetään säilöjä luomaan muuttumattomia suoritysympäristöjä Node.js- ja React-projekteille sekä tutkitaan ja kokeillaan monia erilaisia ja suosittuja työkaluja konttien käytössä.
+
+OSA 13:
+
+Aiheena relaatiotietokantoja käyttävät NodeJS-sovellukset, tietokantana on open source ‑maailman ykkönen PostgreSQL.
+
+- Relaatiotietokannan käyttö Sequelize-kirjastolla
+- Liitostaulut ja -kyselyt
+- Migraatiot, monen suhde moneen -yhteydet
